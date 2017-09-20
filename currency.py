@@ -21,7 +21,24 @@ def convertCurrency(originCurrency, targetCurrency, value):
     target = currencies[targetCurrency]
     
     return (origin / target) * value
+
+def convertCurrencies(originCurrency, value):
+    conversions = {}
     
+    # If given one currency, find all other currencies - Google: "Python get keys from dictionary" - should return a *List* of keys
+    availableCurrencies = currencies.keys()
+    # Run currency function on all the other currencies - Google: "Python: How to iterate a list" AKA: A for loop!
+    for availableCurrency in availableCurrencies:
+        if availableCurrency != originCurrency:
+          conversions[availableCurrency] = convertCurrency(originCurrency, availableCurrency, value)
+    # Return a dictionary of all converted
+
+    return conversions
+
+
+print(convertCurrencies('USD', 100))
+
+
 # if the origin currency is either USD, GBP, EURO or AUD
 # then calculate against all target currencies 
 
