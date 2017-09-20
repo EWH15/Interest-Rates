@@ -1,54 +1,38 @@
 #Mortage Rates
 
-Banks = {
+banks = {
     'BOA': .0350,
-    'Citi': .0375
+    'CITI': .0375
 }
 
-Terms = {
+terms = {
     'Term1': 15,
     'Term2': 20,
     'Term3': 30
 }
 
-def IsValidBank(bank):
-    if bank in Banks:
+def IsValidBank(bank):              #this checks the validity of keys in banks
+    if bank in banks:
         return True
     else:
         return False
 
-def IsValidTerm(term):
-    if term in Terms:
+def IsValidTerm(term):              #this checks the validity of the keys terms
+    if term in terms:
         return True
     else:
         return False
 
 def convertMonthlyInterestAmount(rate, month, amount):
-    if not IsValidBank(rate) or not IsValidTerm(month):
-        return False
-    # (Banks[rate] / Terms[month]) * amount
+    if not IsValidBank(rate) or not IsValidTerm(month):         #this is saying if IsValidBank and IsValidTerm are not valid, do not
+        return False                                            #run, but if true run the calc
+    
+    return (banks[rate] / terms[month]) * amount                #replaces using if else statement to shorten the program
 
 
-    if rate == 'BOA' and month == 'Term1':
-        return (Banks['BOA'] / Terms['Term1']) * amount
-    elif rate == 'BOA' and month == 'Term2':
-        return (Banks['BOA'] / Terms['Term2']) * amount
-    elif rate == 'BOA' and month == 'Term3':
-        return (Banks['BOA'] / Terms['Term3']) * amount
-    elif rate == 'Citi' and month == 'Term1':
-        return (Banks['Citi'] / Terms['Term1']) * amount
-    elif rate == 'Citi' and month == 'Term2':
-        return (Banks['Citi'] / Terms['Term2']) * amount
-    elif rate == 'Citi' and month == 'Term3':
-        return (Banks['Citi'] / Terms['Term3']) * amount
-    else:
-        return False
-
-
-
-converted =  convertMonthlyInterestAmount('BOA', 'Term1', 200000)
+converted =  convertMonthlyInterestAmount('CITI', 'Term1', 200000)       #calc to again shorten the process and also print out the result
+                                                                        #also print out a statement if false
 if (converted):
-    print "BOA monthly mortage amounts:"
     print converted
 else:
-    print "You did not choose a bank with a Mortgage rate"
+    print "You did not choose a bank with a Mortgage rate, please choose again."
