@@ -30,18 +30,24 @@ def convertMonthlyInterestAmount(rate, month, amount):
     return (banks[rate] / terms[month]) * amount                #replaces using if else statement to shorten the program
 
 
-def convertedMontlyInterestAmounts(rate, month, value)
+#create function to run a dictionary on all bank rates and terms of loan
+
+def convertedMontlyInterestAmounts(rate, value):
     
     #create dictionaries to run all iterations through
-    bankRates = {}
     termLength = {}
-
     
+    #create two expressions that will turn dictionary keys into lists for banks and terms
+    availableTerm = terms.keys()
 
+    #need to run convertMonthlyInterestAmount on all banks and term periods
+    for availableTerms in availableTerm:
+        if availableTerms != month:
+            termLength[availableTerms] = convertMonthlyInterestAmount(rate, availableTerms, value) 
 
+        return termLength
 
-
-
+    print convertedMontlyInterestAmounts('BOA', 200000)
 
 converted =  convertMonthlyInterestAmount('CITI', 'Term1', 200000)       #calc to again shorten the process and also print out the result
                                                                         #also print out a statement if false
