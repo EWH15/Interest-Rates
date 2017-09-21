@@ -5,7 +5,7 @@ currencies = {                      #this is a dictionary
     'USD': 1,
     'EURO': 1.176,
     'GBP': 1.28,
-    'AUD': 1.02
+    'AUD': .98
 }
 
 def isValidCurrency(currency):
@@ -36,16 +36,15 @@ def convertCurrencies(originCurrency, value):
     return conversions
 
 
-print(convertCurrencies('USD', 100))
+print(convertCurrencies('GBP', 100))
+
+#need to adjust decimal length in conversions dictionary
 
 
-# if the origin currency is either USD, GBP, EURO or AUD
-# then calculate against all target currencies 
+#converted = convertCurrency('', 'GBP', 100)
 
-converted = convertCurrency('EURO', 'GBP', 100)
+#if not converted:
+  #print("Did not use accepted currency")
 
-if not converted:
-  print("Did not use accepted currency")
-
-else:
-    print(converted)
+#else:
+    #print(converted)
