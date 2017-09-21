@@ -30,6 +30,19 @@ def convertMonthlyInterestAmount(rate, month, amount):
     return (banks[rate] / terms[month]) * amount                #replaces using if else statement to shorten the program
 
 
+def convertedMontlyInterestAmounts(rate, month, value)
+    
+    #create dictionaries to run all iterations through
+    bankRates = {}
+    termLength = {}
+
+    
+
+
+
+
+
+
 converted =  convertMonthlyInterestAmount('CITI', 'Term1', 200000)       #calc to again shorten the process and also print out the result
                                                                         #also print out a statement if false
 if (converted):
