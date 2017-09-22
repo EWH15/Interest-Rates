@@ -11,6 +11,19 @@ terms = {
     'Term3': 30
 }
 
+# rates = {
+#     'BOA': {
+#         'Term1': 123,
+#         'Term2': 456,
+#         'Term3': 789
+#     },
+#     'CITI': {
+#         'Term1': 123,
+#         'Term2': 456,
+#         'Term3': 789
+#     }
+# }
+
 def IsValidBank(bank):              #this checks the validity of keys in banks
     if bank in banks:
         return True
@@ -23,35 +36,56 @@ def IsValidTerm(term):              #this checks the validity of the keys terms
     else:
         return False
 
-def convertMonthlyInterestAmount(rate, month, amount):
-    if not IsValidBank(rate) or not IsValidTerm(month):         #this is saying if IsValidBank and IsValidTerm are not valid, do not
+def convertMonthlyInterestAmount(bank, month, amount):
+    if not IsValidBank(bank) or not IsValidTerm(month):         #this is saying if IsValidBank and IsValidTerm are not valid, do not
         return False                                            #run, but if true run the calc
     
-    return (banks[rate] / terms[month]) * amount                #replaces using if else statement to shorten the program
+    return (banks[bank] / terms[month]) * amount                #replaces using if else statement to shorten the program
 
+
+def getAllTermRatesForBank(bank, amount):
+  termKeys = terms.keys()
+  rates = {}
+  for term in termKeys:
+      rates[term] = convertMonthlyInterestAmount(bank, term, amount)
+  return rates
+
+def getAllTermsForAllBanks(amount):
+    bankKeys = banks.keys()
+    allBank = {}
+
+    for bank in bankKeys:
+        allBank[bank] = getAllTermRatesForBank(bank, amount)
+    return allBank
+
+print(getAllTermsForAllBanks(100000))
+
+#print(getAllTermRatesForBank('BOA', 100))
+  
 
 #create function to run a dictionary on all bank rates and terms of loan
 
-def convertedMontlyInterestAmounts(rate, value):
+# def convertedMontlyInterestAmounts(rate, value):
     
     #create dictionaries to run all iterations through
-    termLength = {}
+#     termLength = {}
+#     bankRate = {}
     
-    #create two expressions that will turn dictionary keys into lists for banks and terms
-    availableTerm = terms.keys()
+#     #create two variables that will turn dictionary keys into lists for banks and terms
+#     availableTerm = terms.keys()
 
-    #need to run convertMonthlyInterestAmount on all banks and term periods
-    for availableTerms in availableTerm:
-        if availableTerms != month:
-            termLength[availableTerms] = convertMonthlyInterestAmount(rate, availableTerms, value) 
+#     #need to run convertMonthlyInterestAmount on all banks and term periods
+#     for availableTerms in availableTerm:
+#         if availableTerms != month:
+# #             termLength[availableTerms] = convertMonthlyInterestAmount(rate, availableTerms, value) 
 
-        return termLength
+#         return termLength
 
-    print convertedMontlyInterestAmounts('BOA', 200000)
+#     print convertedMontlyInterestAmounts('BOA', 200000)
 
-converted =  convertMonthlyInterestAmount('CITI', 'Term1', 200000)       #calc to again shorten the process and also print out the result
-                                                                        #also print out a statement if false
-if (converted):
-    print converted
-else:
-    print "You did not choose a bank with a Mortgage rate, please choose again."
+# converted =  convertMonthlyInterestAmount('CITI', 'Term1', 200000)       #calc to again shorten the process and also print out the result
+#                                                                         #also print out a statement if false
+# if (converted):
+#     print converted
+# else:
+#     print "You did not choose a bank with a Mortgage rate, please choose again."
