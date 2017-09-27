@@ -1,5 +1,6 @@
-#create a program that will calculate multiple variations of wedding venue costs (price per person, minimums)
-#list of venues, list of photographers, list of florists, list of djs
+#create a program that will calculate multiple variations of a total cost for a wedding (venue, dj, florist, photos)
+#list of venues, list of photographers, list of florists, list of djs (dictionaries)
+#validate the keys that are being used in each dictionary, if the wrong key used return false
 
 venues = {
         'Ryland Inn': 33000,
@@ -58,3 +59,28 @@ def totalCost(venue, dj, photo, florist):
     return venues[venue] + djs[dj] + photographers[photo] + florists[florist]
 
 print totalCost('Falkirk', 'Scratch Weddings', 'Jen Larsen', 'Florist1')
+
+
+def toGetAllAmountsforDjs (venue, photo, florist):
+    djkeys = djs.keys()
+    discJockey = {}
+    for dj in djkeys:
+        discJockey[dj] = totalCost(venue, dj, photo, florist)
+    return discJockey
+
+def toGetAllAmountsforPhotographers(venue, florist):
+    photoKeys = photographers.keys()
+    photos = {}
+    for photo in photoKeys:
+        photos[photo] = toGetAllAmountsforDjs(venue, photo, florist)
+    return photos
+
+
+def togGetAllAmountsforFlorists(venue):
+    floristKeys = florists.keys()
+    flowers = {}
+    for flower in floristKeys:
+        flowers[flower] = toGetAllAmountsforPhotographers(venue, flower)
+    return flowers
+
+print(togGetAllAmountsforFlorists('Ryland Inn'))
