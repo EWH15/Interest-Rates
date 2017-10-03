@@ -52,13 +52,13 @@ def getAllTermRatesForBank(bank, amount):
 
 def getAllTermsForAllBanks(amount):
     bankKeys = banks.keys()
-    allBank = {}
+    allBanks = {}
 
     for bank in bankKeys:
-        allBank[bank] = getAllTermRatesForBank(bank, amount)
-    return allBank
+        allBanks[bank] = getAllTermRatesForBank(bank, amount)
+    return allBanks
 
-print(getAllTermsForAllBanks(100000))
+print(getAllTermsForAllBanks(500000))
 
 #print(getAllTermRatesForBank('BOA', 100))
   
