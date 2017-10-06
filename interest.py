@@ -11,18 +11,6 @@ terms = {
     'Term3': 30
 }
 
-# rates = {
-#     'BOA': {
-#         'Term1': 123,
-#         'Term2': 456,
-#         'Term3': 789
-#     },
-#     'CITI': {
-#         'Term1': 123,
-#         'Term2': 456,
-#         'Term3': 789
-#     }
-# }
 
 def IsValidBank(bank):              #this checks the validity of keys in banks
     if bank in banks:
@@ -53,7 +41,6 @@ def getAllTermRatesForBank(bank, amount):
 def getAllTermsForAllBanks(amount):
     bankKeys = banks.keys()
     allBanks = {}
-
     for bank in bankKeys:
         allBanks[bank] = getAllTermRatesForBank(bank, amount)
     return allBanks
